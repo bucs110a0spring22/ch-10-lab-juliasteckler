@@ -4,6 +4,8 @@ import random
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, name, x, y, img_file):
         #initialize all the Sprite functionality
+        """Updates the screen, creates surface object image, get the rectangle for positioning, sets other attributes
+        arg = pygame.sprite"""
         pygame.sprite.Sprite.__init__(self)
 
         #The following two attributes must be called image and rect
@@ -21,4 +23,7 @@ class Enemy(pygame.sprite.Sprite):
         self.speed = 2
 
     def update(self):
-        print("'Update me,' says " + self.name)
+      """ Changes both the x and y coordinates of the internal rectangle object by a random value: -1, 0, or 1.
+"""
+      self.rect.x += random.choice(range(-1, 2))
+      self.rect.y += random.choice(range(-1, 2))

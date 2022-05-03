@@ -4,9 +4,10 @@ import random
 from src import hero
 from src import enemy
 
-
 class Controller:
     def __init__(self, width=640, height=480):
+        """Sets width and height of screen, sets background to white, initialize a held kep to act as repeated key strikes, customizes enemies 
+      args: screen width and height"""
         pygame.init()
         self.width = width
         self.height = height
@@ -23,11 +24,18 @@ class Controller:
             x = random.randrange(100, 400)
             y = random.randrange(100, 400)
             self.enemies.add(enemy.Enemy("Boogie", x, y, 'assets/enemy.png'))
+            if x in range(200, 400):
+              self.enemies.add(enemy.Enemy("Boogie bigger", x, y, 'assets/scariestenemy.png'))
+            if y in range(200, 400):
+              self.enemies.add(enemy.Enemy("Boogie bigger", x, y, 'assets/scariestenemy.png'))
         self.hero = hero.Hero("Conan", 50, 80, "assets/hero.png")
         self.all_sprites = pygame.sprite.Group((self.hero,) + tuple(self.enemies))
         self.state = "GAME"
 
-    def mainLoop(self):
+
+    def mainLoop(self): 
+        """Begins game and ends game
+        arg = self"""
         while True:
             if(self.state == "GAME"):
                 self.gameLoop()
@@ -35,6 +43,8 @@ class Controller:
                 self.gameOver()
 
     def gameLoop(self):
+        """Controls the hero movement, checks for collisions, redraws the entire screen, updates screen
+        arg =self"""
         while self.state == "GAME":
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -71,6 +81,8 @@ class Controller:
             pygame.display.flip()
 
     def gameOver(self):
+        """Control hero kills, displays, ends game
+        arg = self"""
         self.hero.kill()
         myfont = pygame.font.SysFont(None, 30)
         message = myfont.render('Game Over', False, (0, 0, 0))

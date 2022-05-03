@@ -23,15 +23,25 @@ class Hero(pygame.sprite.Sprite):
 
     #methods to make moving our hero easier
     def move_up(self):
+        """Moves hero up 
+        arg = self"""
         self.rect.y -= self.speed
     def move_down(self):
+        """Moves hero down
+        arg = self"""
         self.rect.y += self.speed
     def move_left(self):
+        """Moves hero left
+        arg = self"""
         self.rect.x -= self.speed
     def move_right(self):
+        """Moves hero right
+        arg = self"""
         self.rect.x += self.speed
 
     def fight(self, opponent):
+        """Keeps track of hero health, updates remaining health
+        args = opponent"""
         if(random.randrange(3)):
             self.health -= 1
             print("attack failed. Remaining Health: ", self.health)
